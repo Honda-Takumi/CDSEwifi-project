@@ -1,9 +1,3 @@
-//npm install browserify vinyl-source-stream rx --save
-import "./style.css";
-import { Observable } from "Observable";
-import { fromEvent } from "observable/fromEvent";
-import { tap, delay } from "operators";
-
 //export var serial: any;
 class Move {
   constructor() {
@@ -32,12 +26,26 @@ class Move {
 
   liftup(): void {
     //serial.write("LU");
-    console.log("LU");
+    console.log("U");
   }
 
   liftdown(): void {
     //serial.write("LD");
-    console.log("LD");
+    console.log("D");
+  }
+}
+
+class Detect {
+  constructor() {
+    const fwrd = document.getElementById("fwrd");
+    const back = document.getElementById("back");
+    const rigt = document.getElementById("rigt");
+    const left = document.getElementById("left");
+    const liftup = document.getElementById("liftup");
+    const liftdown = document.getElementById("liftdown");
+    const motorPr = document.getElementById("motorPr");
+    const motorRr = document.getElementById("motorRr");
+    const motorSt = document.getElementById("MotorSt");
   }
 }
 class Buttontap {
@@ -47,16 +55,13 @@ class Buttontap {
   constructor(element) {
     console.log("test");
     this._el = element;
-    /*window.addEventListener("onmousedown", (event) => {
-      console.log("push");
-    });*/
     this.detect();
   }
   detect() {
-    const mousedown$: Observable<Event> = fromEvent(this._el, "mousedown");
-    const mouseup$: Observable<Event> = fromEvent(this._el, "mouseup");
-    mousedown$.pipe(
-      (this.intervalId = window.setInterval(() => {
+    window.addEventListener("onmousedown", _el => {
+      console.log("push");
+    
+      this.intervalId = window.setInterval(() => {
         var M: Move = new Move();
         switch (this._el) {
           case "fwrd":
@@ -77,9 +82,7 @@ class Buttontap {
             M.liftup();
             break;
         }
-      }, 100))
+      }, 100
     );
-
-    mouseup$.pipe(window.clearInterval(this.intervalId));
-  }
+  );  
 }

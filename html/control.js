@@ -2,7 +2,7 @@
 exports.__esModule = true;
 //npm install browserify vinyl-source-stream rx --save
 require("./style.css");
-var fromEvent_1 = require("rxjs/observable/fromEvent");
+var fromEvent_1 = require("observable/fromEvent");
 //export var serial: any;
 var Move = /** @class */ (function () {
     function Move() {
