@@ -35,19 +35,6 @@ class Move {
   }
 }
 
-class Detect {
-  constructor() {
-    const fwrd = document.getElementById("fwrd");
-    const back = document.getElementById("back");
-    const rigt = document.getElementById("rigt");
-    const left = document.getElementById("left");
-    const liftup = document.getElementById("liftup");
-    const liftdown = document.getElementById("liftdown");
-    const motorPr = document.getElementById("motorPr");
-    const motorRr = document.getElementById("motorRr");
-    const motorSt = document.getElementById("MotorSt");
-  }
-}
 class Buttontap {
   _el: any;
   intervalId: number;
@@ -58,9 +45,9 @@ class Buttontap {
     this.detect();
   }
   detect() {
-    window.addEventListener("onmousedown", _el => {
+    window.addEventListener("onmousedown", (_el) => {
       console.log("push");
-    
+
       this.intervalId = window.setInterval(() => {
         var M: Move = new Move();
         switch (this._el) {
@@ -82,7 +69,54 @@ class Buttontap {
             M.liftup();
             break;
         }
-      }, 100
-    );
-  );  
+      }, 100);
+    });
+
+    window.addEventListener("onmouseup", (_el) => {
+      window.clearInterval(this.intervalId);
+    });
+  }
 }
+class Detect {
+  constructor() {
+    const F = document.getElementById("fwrd");
+    const B = document.getElementById("back");
+    const R = document.getElementById("rigt");
+    const L = document.getElementById("left");
+    const U = document.getElementById("liftup");
+    const D = document.getElementById("liftdown");
+    const p = document.getElementById("motorPr");
+    const r = document.getElementById("motorRr");
+    const s = document.getElementById("MotorSt");
+
+    if (F.onclick) {
+      var temp = new Buttontap(F);
+    }
+    if (B.onclick) {
+      var temp = new Buttontap(B);
+    }
+    if (R.onclick) {
+      var temp = new Buttontap(R);
+    }
+    if (L.onclick) {
+      var temp = new Buttontap(L);
+    }
+    if (U.onclick) {
+      var temp = new Buttontap(U);
+    }
+    if (D.onclick) {
+      var temp = new Buttontap(D);
+    }
+    if (p.onclick) {
+      var temp = new Buttontap(p);
+    }
+    if (r.onclick) {
+      var temp = new Buttontap(r);
+    }
+    if (s.onclick) {
+      var temp = new Buttontap(s);
+    }
+  }
+}
+
+let De = new Detect();
