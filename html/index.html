@@ -4,7 +4,9 @@
 	<meta charset="UTF-8">
 	<title>CDSE wifi-project</title>
 
-	<script type="text/javascript" src="script.js"></script>
+	<script type="text/javascript" src="control.js">
+		var serial = new Serial("usb1");
+	</script>
 	<style type="text/css">
 		button {
 			margin: 5px 5px 5px 5px;
@@ -59,7 +61,7 @@
 <body>
 	<div align="center">
 		</br>
-		<button id="fwrd" type="button">FWRD</button>
+		<button id="fwrd" type="button" onclick=Buttontap(document.getElementById("fwrd"))>FWRD</button>
 		</br>
 		<button id="left" type="button">LEFT</button>
 		<button id="rigt" type="button">RIGT</button>
