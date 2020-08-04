@@ -1,8 +1,8 @@
 //export var serial: any;
 class Move {
   constructor() {
-    const message: string = "Hello! TypeScript!";
-    console.log(message);
+    //const message: string = "Hello! TypeScript!";
+    //console.log(message);
   }
   fwrd(): void {
     //serial.write("F");
@@ -35,88 +35,114 @@ class Move {
   }
 }
 
-class Buttontap {
-  _el: any;
-  intervalId: number;
+class EventJudge {
+  private act: string;
+  private $intervalId: number;
 
-  constructor(element) {
-    console.log("test");
-    this._el = element;
-    this.detect();
+  constructor(activity: string) {
+    this.act = activity;
   }
-  detect() {
-    window.addEventListener("onmousedown", (_el) => {
-      console.log("push");
 
-      this.intervalId = window.setInterval(() => {
-        var M: Move = new Move();
-        switch (this._el) {
-          case "fwrd":
-            M.fwrd();
-            break;
-          case "back":
-            M.back();
-            break;
-          case "left":
-            M.left();
-            break;
-          case "rigt":
-            M.rigt();
-            break;
-          case "liftdown":
-            M.liftdown();
-          case "liftup":
-            M.liftup();
-            break;
-        }
-      }, 100);
-    });
+  detectMousedown() {
+    this.$intervalId = window.setInterval(() => {
+      const M: Move = new Move();
+      switch (this.act) {
+        case "fwrd":
+          M.fwrd();
+          break;
 
-    window.addEventListener("onmouseup", (_el) => {
-      window.clearInterval(this.intervalId);
-    });
+        case "back":
+          M.back();
+          break;
+
+        case "left":
+          M.left();
+          break;
+
+        case "rigt":
+          M.rigt();
+          break;
+
+        case "liftdown":
+          M.liftdown();
+          break;
+
+        case "liftup":
+          M.liftup();
+          break;
+      }
+    }, 100);
+  }
+
+  detectMouseup() {
+    //console.log(this.$intervalId);
+    window.clearInterval(this.$intervalId);
   }
 }
-class Detect {
+
+class MotorEventIgnition {
+  private EJ: EventJudge;
   constructor() {
-    const F = document.getElementById("fwrd");
-    const B = document.getElementById("back");
-    const R = document.getElementById("rigt");
-    const L = document.getElementById("left");
-    const U = document.getElementById("liftup");
-    const D = document.getElementById("liftdown");
-    const p = document.getElementById("motorPr");
-    const r = document.getElementById("motorRr");
-    const s = document.getElementById("MotorSt");
+    window.addEventListener("load", (e) => {
+      const F = document.getElementById("fwrd");
+      const B = document.getElementById("back");
+      const R = document.getElementById("rigt");
+      const L = document.getElementById("left");
+      const U = document.getElementById("liftup");
+      const D = document.getElementById("liftdown");
+      const p = document.getElementById("motorPr");
+      const r = document.getElementById("motorRr");
+      const s = document.getElementById("MotorSt");
 
-    if (F.onclick) {
-      var temp = new Buttontap(F);
-    }
-    if (B.onclick) {
-      var temp = new Buttontap(B);
-    }
-    if (R.onclick) {
-      var temp = new Buttontap(R);
-    }
-    if (L.onclick) {
-      var temp = new Buttontap(L);
-    }
-    if (U.onclick) {
-      var temp = new Buttontap(U);
-    }
-    if (D.onclick) {
-      var temp = new Buttontap(D);
-    }
-    if (p.onclick) {
-      var temp = new Buttontap(p);
-    }
-    if (r.onclick) {
-      var temp = new Buttontap(r);
-    }
-    if (s.onclick) {
-      var temp = new Buttontap(s);
-    }
+      F.addEventListener("mousedown", () => {
+        this.EJ = new EventJudge("fwrd");
+        this.EJ.detectMousedown();
+      });
+      F.addEventListener("mouseup", () => {
+        this.EJ.detectMouseup();
+      });
+
+      B.addEventListener("mousedown", () => {
+        this.EJ = new EventJudge("back");
+        this.EJ.detectMousedown();
+      });
+      B.addEventListener("mouseup", () => {
+        this.EJ.detectMouseup();
+      });
+
+      R.addEventListener("mousedown", () => {
+        this.EJ = new EventJudge("rigt");
+        this.EJ.detectMousedown();
+      });
+      R.addEventListener("mouseup", () => {
+        this.EJ.detectMouseup();
+      });
+
+      L.addEventListener("mousedown", () => {
+        this.EJ = new EventJudge("left");
+        this.EJ.detectMousedown();
+      });
+      L.addEventListener("mouseup", () => {
+        this.EJ.detectMouseup();
+      });
+
+      U.addEventListener("mousedown", () => {
+        this.EJ = new EventJudge("liftup");
+        this.EJ.detectMousedown();
+      });
+      U.addEventListener("mouseup", () => {
+        this.EJ.detectMouseup();
+      });
+
+      D.addEventListener("mousedown", () => {
+        this.EJ = new EventJudge("liftdown");
+        this.EJ.detectMousedown();
+      });
+      D.addEventListener("mouseup", () => {
+        this.EJ.detectMouseup();
+      });
+    });
   }
 }
 
-let De = new Detect();
+var EI = new MotorEventIgnition();

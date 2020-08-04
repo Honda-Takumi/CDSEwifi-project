@@ -50,6 +50,7 @@ window.onload = function () {
 
     //ここから先どうにかしてまとめて
     document.getElementById("fwrd").onmousedown = function () {
+        console.log(typeof (document.getElementById("fwrd")));
         $intervalID = setInterval(function () {
             fwrd();
         }, 100);
