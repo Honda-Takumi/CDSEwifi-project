@@ -3,10 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>CDSE wifi-project</title>
-
-	<script type="text/javascript" src="control.js">
-		var serial = new Serial("usb1");
-	</script>
+	<script type="text/javascript" src="control.js"></script>
 	<style type="text/css">
 		button {
 			margin: 5px 5px 5px 5px;
@@ -15,6 +12,11 @@
 			border-radius: 10px;
 			font-size: 24pt;
 			font-weight: bold;
+		}
+
+		input.geomsize {
+			width: 1.2em;
+			height: 1.2em;
 		}
 
 		body {
@@ -98,11 +100,13 @@
 		<button id="liftup" type="button">Lift UP</button>
 		<button id="liftdown" type="button">Lift DOWN</button>
 		</br>
-		<button id="motorPr" type="button">Moter rotate</button>
-		<button id="motorRr" type="button">Moter revers</button>
+
+		<input name="radio" id="motorPr" type="radio" class="geomsize">Moter rotate</input>
+		<input name="radio" id="motorRr" type="radio" class="geomsize">Moter revers</input>
 		</br>
-		<button id="MotorSt" type="button">Moter STOP</button>
+		<input name="radio" id="motorSt" type="radio" class="geomsize">Moter STOP</input>
 		<br>
+
 	</div>
 
 

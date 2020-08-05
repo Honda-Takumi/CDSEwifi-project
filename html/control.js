@@ -1,8 +1,10 @@
 //export var serial: any;
+/*var Serialport = require("serialport");
+var serial = new Serialport("usb1", { baudRate: 115200 });
+serial.on("open");*/
+var SEND_INTERVAL = 100;
 var Move = /** @class */ (function () {
     function Move() {
-        //const message: string = "Hello! TypeScript!";
-        //console.log(message);
     }
     Move.prototype.fwrd = function () {
         //serial.write("F");
@@ -21,53 +23,65 @@ var Move = /** @class */ (function () {
         console.log("B");
     };
     Move.prototype.liftup = function () {
-        //serial.write("LU");
+        //serial.write("U");
         console.log("U");
     };
     Move.prototype.liftdown = function () {
-        //serial.write("LD");
+        //serial.write("D");
         console.log("D");
+    };
+    Move.prototype.MotorProtate = function () {
+        //serial.write("p");
+        console.log("p");
+    };
+    Move.prototype.MotorRrotate = function () {
+        //serial.write("r");
+        console.log("r");
+    };
+    Move.prototype.MotorStop = function () {
+        //serial.write("s");
+        console.log("s");
     };
     return Move;
 }());
 var EventJudge = /** @class */ (function () {
     function EventJudge(activity) {
+        this.M = new Move();
         this.act = activity;
     }
     EventJudge.prototype.detectMousedown = function () {
         var _this = this;
         this.$intervalId = window.setInterval(function () {
-            var M = new Move();
+            //const M: Move = new Move();
             switch (_this.act) {
                 case "fwrd":
-                    M.fwrd();
+                    _this.M.fwrd();
                     break;
                 case "back":
-                    M.back();
+                    _this.M.back();
                     break;
                 case "left":
-                    M.left();
+                    _this.M.left();
                     break;
                 case "rigt":
-                    M.rigt();
+                    _this.M.rigt();
                     break;
                 case "liftdown":
-                    M.liftdown();
+                    _this.M.liftdown();
                     break;
                 case "liftup":
-                    M.liftup();
+                    _this.M.liftup();
                     break;
             }
-        }, 100);
+        }, SEND_INTERVAL);
     };
     EventJudge.prototype.detectMouseup = function () {
-        //console.log(this.$intervalId);
         window.clearInterval(this.$intervalId);
     };
     return EventJudge;
 }());
-var MotorEventIgnition = /** @class */ (function () {
-    function MotorEventIgnition() {
+var EventIgnition = /** @class */ (function () {
+    function EventIgnition() {
         var _this = this;
         window.addEventListener("load", function (e) {
             var F = document.getElementById("fwrd");
@@ -76,9 +90,6 @@ var MotorEventIgnition = /** @class */ (function () {
             var L = document.getElementById("left");
             var U = document.getElementById("liftup");
             var D = document.getElementById("liftdown");
-            var p = document.getElementById("motorPr");
-            var r = document.getElementById("motorRr");
-            var s = document.getElementById("MotorSt");
             F.addEventListener("mousedown", function () {
                 _this.EJ = new EventJudge("fwrd");
                 _this.EJ.detectMousedown();
@@ -123,6 +134,45 @@ var MotorEventIgnition = /** @class */ (function () {
             });
         });
     }
-    return MotorEventIgnition;
+    return EventIgnition;
 }());
-var EI = new MotorEventIgnition();
+var ClickIgnition = /** @class */ (function () {
+    function ClickIgnition() {
+        this.EJP = new EventJudge("MotorPr");
+        this.EJR = new EventJudge("MotorRr");
+        this.M = new Move();
+        window.addEventListener("load", function (e) {
+            var motor = document.getElementsByName("Radio");
+            //const r = document.getElementById("motorRr");
+            //const s = document.getElementById("motorSt");
+            motor.forEach(function (e) {
+                e.addEventListener("click", function () {
+                });
+            });
+            /*if (motor[0].cheched) {
+              this.M.MotorProtate();
+            }
+            if (motor[1].checked) {
+              this.M.MotorRrotate();
+            }
+            if (motor[2].checked) {
+            }*/
+            /*
+            p.addEventListener("click", () => {
+              do{
+              this.EJP.detectClick("p");
+            }while(r.checked);}
+            );
+      
+            r.addEventListener("click", () => {
+              if (this.MotorPr_index % 2 == 1) {
+                this.EJP.detectMouseup();
+              }
+              this.EJR.detectClick("r");
+            });*/
+        });
+    }
+    return ClickIgnition;
+}());
+//https://uxmilk.jp/39148
+var EI = new EventIgnition();

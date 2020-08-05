@@ -1,9 +1,11 @@
 //export var serial: any;
+/*var Serialport = require("serialport");
+var serial = new Serialport("usb1", { baudRate: 115200 });
+serial.on("open");*/
+const SEND_INTERVAL: number = 100;
+
 class Move {
-  constructor() {
-    //const message: string = "Hello! TypeScript!";
-    //console.log(message);
-  }
+  constructor() {}
   fwrd(): void {
     //serial.write("F");
     console.log("F");
@@ -25,62 +27,76 @@ class Move {
   }
 
   liftup(): void {
-    //serial.write("LU");
+    //serial.write("U");
     console.log("U");
   }
 
   liftdown(): void {
-    //serial.write("LD");
+    //serial.write("D");
     console.log("D");
+  }
+
+  MotorProtate(): void {
+    //serial.write("p");
+    console.log("p");
+  }
+
+  MotorRrotate(): void {
+    //serial.write("r");
+    console.log("r");
+  }
+
+  MotorStop(): void {
+    //serial.write("s");
+    console.log("s");
   }
 }
 
 class EventJudge {
   private act: string;
   private $intervalId: number;
-
+  private M: Move = new Move();
   constructor(activity: string) {
     this.act = activity;
   }
 
   detectMousedown() {
     this.$intervalId = window.setInterval(() => {
-      const M: Move = new Move();
+      //const M: Move = new Move();
       switch (this.act) {
         case "fwrd":
-          M.fwrd();
+          this.M.fwrd();
           break;
 
         case "back":
-          M.back();
+          this.M.back();
           break;
 
         case "left":
-          M.left();
+          this.M.left();
           break;
 
         case "rigt":
-          M.rigt();
+          this.M.rigt();
           break;
 
         case "liftdown":
-          M.liftdown();
+          this.M.liftdown();
           break;
 
         case "liftup":
-          M.liftup();
+          this.M.liftup();
           break;
       }
-    }, 100);
+    }, SEND_INTERVAL);
   }
 
   detectMouseup() {
-    //console.log(this.$intervalId);
     window.clearInterval(this.$intervalId);
   }
 }
 
-class MotorEventIgnition {
+class EventIgnition {
   private EJ: EventJudge;
   constructor() {
     window.addEventListener("load", (e) => {
@@ -90,9 +106,6 @@ class MotorEventIgnition {
       const L = document.getElementById("left");
       const U = document.getElementById("liftup");
       const D = document.getElementById("liftdown");
-      const p = document.getElementById("motorPr");
-      const r = document.getElementById("motorRr");
-      const s = document.getElementById("MotorSt");
 
       F.addEventListener("mousedown", () => {
         this.EJ = new EventJudge("fwrd");
@@ -145,4 +158,45 @@ class MotorEventIgnition {
   }
 }
 
-var EI = new MotorEventIgnition();
+class ClickIgnition {
+  private EJP: EventJudge = new EventJudge("MotorPr");
+  private EJR: EventJudge = new EventJudge("MotorRr");
+  private M: Move = new Move();
+
+  constructor() {
+    window.addEventListener("load", (e) => {
+      const motor = document.getElementsByName("Radio");
+      //const r = document.getElementById("motorRr");
+      //const s = document.getElementById("motorSt");
+
+      motor.forEach(function(e){
+        e.addEventListener("click",() =>{
+
+        }
+      };
+      /*if (motor[0].cheched) {
+        this.M.MotorProtate();
+      }
+      if (motor[1].checked) {
+        this.M.MotorRrotate();
+      }
+      if (motor[2].checked) {
+      }*/
+      /*
+      p.addEventListener("click", () => {
+        do{
+        this.EJP.detectClick("p");
+      }while(r.checked);}
+      );
+
+      r.addEventListener("click", () => {
+        if (this.MotorPr_index % 2 == 1) {
+          this.EJP.detectMouseup();
+        }
+        this.EJR.detectClick("r");
+      });*/
+    });
+  }
+}
+//https://uxmilk.jp/39148
+var EI = new EventIgnition();
