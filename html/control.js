@@ -72,6 +72,12 @@ var EventJudge = /** @class */ (function () {
                 case "liftup":
                     _this.M.liftup();
                     break;
+                case "p":
+                    _this.M.MotorProtate();
+                    break;
+                case "r":
+                    _this.M.MotorRrotate();
+                    break;
             }
         }, SEND_INTERVAL);
     };
@@ -83,6 +89,7 @@ var EventJudge = /** @class */ (function () {
 var EventIgnition = /** @class */ (function () {
     function EventIgnition() {
         var _this = this;
+        this.Motorstate = 0;
         window.addEventListener("load", function (e) {
             var F = document.getElementById("fwrd");
             var B = document.getElementById("back");
@@ -90,6 +97,9 @@ var EventIgnition = /** @class */ (function () {
             var L = document.getElementById("left");
             var U = document.getElementById("liftup");
             var D = document.getElementById("liftdown");
+            var p = document.getElementById("motorPr");
+            var r = document.getElementById("motorRr");
+            //const s = document.getElementById("motorSt");
             F.addEventListener("mousedown", function () {
                 _this.EJ = new EventJudge("fwrd");
                 _this.EJ.detectMousedown();
@@ -132,47 +142,28 @@ var EventIgnition = /** @class */ (function () {
             D.addEventListener("mouseup", function () {
                 _this.EJ.detectMouseup();
             });
+            p.addEventListener("click", function () {
+                _this.Motorstate++;
+                _this.EJ = new EventJudge("motorPr");
+                if (_this.Motorstate % 2 == 1) {
+                    _this.EJ.detectMousedown();
+                }
+                else {
+                    _this.EJ.detectMouseup();
+                }
+            });
+            r.addEventListener("click", function () {
+                _this.Motorstate++;
+                _this.EJ = new EventJudge("motorRr");
+                if (_this.Motorstate % 2 == 1) {
+                    _this.EJ.detectMousedown();
+                }
+                else {
+                    _this.EJ.detectMouseup();
+                }
+            });
         });
     }
     return EventIgnition;
 }());
-var ClickIgnition = /** @class */ (function () {
-    function ClickIgnition() {
-        this.EJP = new EventJudge("MotorPr");
-        this.EJR = new EventJudge("MotorRr");
-        this.M = new Move();
-        window.addEventListener("load", function (e) {
-            var motor = document.getElementsByName("Radio");
-            //const r = document.getElementById("motorRr");
-            //const s = document.getElementById("motorSt");
-            motor.forEach(function (e) {
-                e.addEventListener("click", function () {
-                });
-            });
-            /*if (motor[0].cheched) {
-              this.M.MotorProtate();
-            }
-            if (motor[1].checked) {
-              this.M.MotorRrotate();
-            }
-            if (motor[2].checked) {
-            }*/
-            /*
-            p.addEventListener("click", () => {
-              do{
-              this.EJP.detectClick("p");
-            }while(r.checked);}
-            );
-      
-            r.addEventListener("click", () => {
-              if (this.MotorPr_index % 2 == 1) {
-                this.EJP.detectMouseup();
-              }
-              this.EJR.detectClick("r");
-            });*/
-        });
-    }
-    return ClickIgnition;
-}());
-//https://uxmilk.jp/39148
 var EI = new EventIgnition();

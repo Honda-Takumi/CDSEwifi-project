@@ -87,6 +87,14 @@ class EventJudge {
         case "liftup":
           this.M.liftup();
           break;
+
+        case "p":
+          this.M.MotorProtate();
+          break;
+
+        case "r":
+          this.M.MotorRrotate();
+          break;
       }
     }, SEND_INTERVAL);
   }
@@ -98,6 +106,7 @@ class EventJudge {
 
 class EventIgnition {
   private EJ: EventJudge;
+  private Motorstate: number = 0;
   constructor() {
     window.addEventListener("load", (e) => {
       const F = document.getElementById("fwrd");
@@ -106,6 +115,9 @@ class EventIgnition {
       const L = document.getElementById("left");
       const U = document.getElementById("liftup");
       const D = document.getElementById("liftdown");
+      const p = document.getElementById("motorPr");
+      const r = document.getElementById("motorRr");
+      //const s = document.getElementById("motorSt");
 
       F.addEventListener("mousedown", () => {
         this.EJ = new EventJudge("fwrd");
@@ -154,49 +166,28 @@ class EventIgnition {
       D.addEventListener("mouseup", () => {
         this.EJ.detectMouseup();
       });
-    });
-  }
-}
 
-class ClickIgnition {
-  private EJP: EventJudge = new EventJudge("MotorPr");
-  private EJR: EventJudge = new EventJudge("MotorRr");
-  private M: Move = new Move();
-
-  constructor() {
-    window.addEventListener("load", (e) => {
-      const motor = document.getElementsByName("Radio");
-      //const r = document.getElementById("motorRr");
-      //const s = document.getElementById("motorSt");
-
-      motor.forEach(function(e){
-        e.addEventListener("click",() =>{
-
-        }
-      };
-      /*if (motor[0].cheched) {
-        this.M.MotorProtate();
-      }
-      if (motor[1].checked) {
-        this.M.MotorRrotate();
-      }
-      if (motor[2].checked) {
-      }*/
-      /*
       p.addEventListener("click", () => {
-        do{
-        this.EJP.detectClick("p");
-      }while(r.checked);}
-      );
+        this.Motorstate++;
+        this.EJ = new EventJudge("motorPr");
+        if (this.Motorstate % 2 == 1) {
+          this.EJ.detectMousedown();
+        } else {
+          this.EJ.detectMouseup();
+        }
+      });
 
       r.addEventListener("click", () => {
-        if (this.MotorPr_index % 2 == 1) {
-          this.EJP.detectMouseup();
+        this.Motorstate++;
+        this.EJ = new EventJudge("motorRr");
+        if (this.Motorstate % 2 == 1) {
+          this.EJ.detectMousedown();
+        } else {
+          this.EJ.detectMouseup();
         }
-        this.EJR.detectClick("r");
-      });*/
+      });
     });
   }
 }
-//https://uxmilk.jp/39148
+
 var EI = new EventIgnition();
