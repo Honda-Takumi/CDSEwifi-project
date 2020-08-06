@@ -49,7 +49,7 @@ var EventJudge = /** @class */ (function () {
         this.M = new Move();
         this.act = activity;
     }
-    EventJudge.prototype.detectMousedown = function () {
+    EventJudge.prototype.mousedown = function () {
         var _this = this;
         this.$intervalId = window.setInterval(function () {
             //const M: Move = new Move();
@@ -72,16 +72,16 @@ var EventJudge = /** @class */ (function () {
                 case "liftup":
                     _this.M.liftup();
                     break;
-                case "p":
+                case "motorPr":
                     _this.M.MotorProtate();
                     break;
-                case "r":
+                case "motorRr":
                     _this.M.MotorRrotate();
                     break;
             }
         }, SEND_INTERVAL);
     };
-    EventJudge.prototype.detectMouseup = function () {
+    EventJudge.prototype.mouseup = function () {
         window.clearInterval(this.$intervalId);
     };
     return EventJudge;
@@ -89,6 +89,8 @@ var EventJudge = /** @class */ (function () {
 var EventIgnition = /** @class */ (function () {
     function EventIgnition() {
         var _this = this;
+        this.EJP = new EventJudge("motorPr");
+        this.EJR = new EventJudge("motorRr");
         this.Motorstate = 0;
         window.addEventListener("load", function (e) {
             var F = document.getElementById("fwrd");
@@ -102,64 +104,68 @@ var EventIgnition = /** @class */ (function () {
             //const s = document.getElementById("motorSt");
             F.addEventListener("mousedown", function () {
                 _this.EJ = new EventJudge("fwrd");
-                _this.EJ.detectMousedown();
+                _this.EJ.mousedown();
             });
             F.addEventListener("mouseup", function () {
-                _this.EJ.detectMouseup();
+                _this.EJ.mouseup();
             });
             B.addEventListener("mousedown", function () {
                 _this.EJ = new EventJudge("back");
-                _this.EJ.detectMousedown();
+                _this.EJ.mousedown();
             });
             B.addEventListener("mouseup", function () {
-                _this.EJ.detectMouseup();
+                _this.EJ.mouseup();
             });
             R.addEventListener("mousedown", function () {
                 _this.EJ = new EventJudge("rigt");
-                _this.EJ.detectMousedown();
+                _this.EJ.mousedown();
             });
             R.addEventListener("mouseup", function () {
-                _this.EJ.detectMouseup();
+                _this.EJ.mouseup();
             });
             L.addEventListener("mousedown", function () {
                 _this.EJ = new EventJudge("left");
-                _this.EJ.detectMousedown();
+                _this.EJ.mousedown();
             });
             L.addEventListener("mouseup", function () {
-                _this.EJ.detectMouseup();
+                _this.EJ.mouseup();
             });
             U.addEventListener("mousedown", function () {
                 _this.EJ = new EventJudge("liftup");
-                _this.EJ.detectMousedown();
+                _this.EJ.mousedown();
             });
             U.addEventListener("mouseup", function () {
-                _this.EJ.detectMouseup();
+                _this.EJ.mouseup();
             });
             D.addEventListener("mousedown", function () {
                 _this.EJ = new EventJudge("liftdown");
-                _this.EJ.detectMousedown();
+                _this.EJ.mousedown();
             });
             D.addEventListener("mouseup", function () {
-                _this.EJ.detectMouseup();
+                _this.EJ.mouseup();
             });
-            p.addEventListener("click", function () {
-                _this.Motorstate++;
-                _this.EJ = new EventJudge("motorPr");
-                if (_this.Motorstate % 2 == 1) {
-                    _this.EJ.detectMousedown();
+            p.addEventListener("change", function () {
+                if (document.motor.elements[0].checked) {
+                    if (document.motor.elements[1].checked) {
+                        document.motor.elements[1].checked = false;
+                        _this.EJR.mouseup();
+                    }
+                    _this.EJP.mousedown();
                 }
                 else {
-                    _this.EJ.detectMouseup();
+                    _this.EJP.mouseup();
                 }
             });
-            r.addEventListener("click", function () {
-                _this.Motorstate++;
-                _this.EJ = new EventJudge("motorRr");
-                if (_this.Motorstate % 2 == 1) {
-                    _this.EJ.detectMousedown();
+            r.addEventListener("change", function () {
+                if (document.motor.elements[1].checked) {
+                    if (document.motor.elements[0].checked) {
+                        document.motor.elements[0].checked = false;
+                        _this.EJP.mouseup();
+                    }
+                    _this.EJR.mousedown();
                 }
                 else {
-                    _this.EJ.detectMouseup();
+                    _this.EJR.mouseup();
                 }
             });
         });

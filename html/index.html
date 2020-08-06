@@ -3,6 +3,10 @@
 <head>
 	<meta charset="UTF-8">
 	<title>CDSE wifi-project</title>
+	<link rel="stylesheet" href="stylesheet.css">
+	<script type="text/javascript">
+	//var serial = new Serial("usb1");
+	</script>
 	<script type="text/javascript" src="control.js"></script>
 	<style type="text/css">
 		button {
@@ -100,16 +104,29 @@
 		<button id="liftup" type="button">Lift UP</button>
 		<button id="liftdown" type="button">Lift DOWN</button>
 		</br>
+	</div>
+
+	<div align="center" class="ckbox">
+		<form name = "motor">
+			<input id="motorPr" type="checkbox" class="geomsize"></input>
+			<label for="motorPr">Pr
+				<span></span>
+			</label>
 
 
-		<input id="motorPr" type="checkbox" class="geomsize"></input>
-		<label for="motorPr">Moter rotate</label>
-		<input id="motorRr" type="checkbox" class="geomsize"></input>
-		<label for="motorRr">Moter revers</label>
-		</br>
-		<!---<input id="motorSt" type="radio">Moter STOP</input>
-		<br> --->
+			<input id="motorRr" type="checkbox" class="geomsize"></input>
+			<label for="motorRr">Rr
+				<span></span>
+			</label>
 
+			</br>
+
+			<!---
+			<input id="motorSt" type="radio"></input>
+			<label for="motorSt">Moter STOP</label>
+			--->
+			<br>
+		</form>
 	</div>
 
 
