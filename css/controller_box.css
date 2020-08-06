@@ -1,0 +1,96 @@
+button {
+    margin: 1px 1px 1px 1px;
+    width: 200px;
+    height: 100px;
+    border-radius: 10px;
+    font-size: 24pt;
+    font-weight: bold;
+    border-style: none;
+    cursor: pointer;
+}
+
+/*左側の設定*/
+.box {
+    display: box;
+    grid-template-columns: 30px 30px 30px;
+    grid-template-rows: 30px 30px 30px;
+}
+
+.controller.left.box {
+    margin: 1px 1px 1px 1px;
+    width: 150px;
+    height: 100px;
+    border-radius: 10px;
+    font-size: 24pt;
+    font-weight: bold;
+    border-style: none;
+    cursor: pointer;
+    grid-template-columns: 30px 30px 30px;
+    grid-template-rows: 30px 30px 30px;
+}
+
+.controller.left.box.FWRD {
+    grid-row: 1/2;
+    grid-column: 2/3;
+}
+
+.controller.left.box.LEFT {
+    grid-row: 2/3;
+    grid-column: 1/2;
+}
+
+.controller.left.box.RIGT {
+    grid-row: 2/3;
+    grid-column: 2/3;
+}
+
+.controller.left.box.BACK {
+    grid-row: 3/4;
+    grid-column: 2/3;
+}
+
+
+
+
+/*右側の設定*/
+.controller.right {
+    position: relative;
+    top: 20px;
+    left: 20px;
+}
+
+.controller.right.box {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+
+    color: white;
+}
+
+.left-mark {
+    display: block;
+    transform: rotate(-90deg);
+}
+
+.rigt-mark {
+    display: block;
+    transform: rotate(90deg);
+}
+
+.back-mark {
+    display: block;
+    transform: rotate(180deg);
+}
+
+/*全体の結合*/
+.controller {
+    display: flex;
+}
+
+.controller.left {
+    z-index: 1;
+}
+
+.controller.right {
+    z-index: 2;
+}
