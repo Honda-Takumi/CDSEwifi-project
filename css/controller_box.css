@@ -9,6 +9,12 @@ button {
     cursor: pointer;
 }
 
+
+body {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+}
+
 /*左側の設定*/
 .box {
     display: box;
