@@ -2,52 +2,54 @@
 /*var Serialport = require("serialport");
 var serial = new Serialport("usb1", { baudRate: 115200 });
 serial.on("open");*/
+
 const SEND_INTERVAL: number = 100;
+
 
 class Move {
   constructor() {}
   fwrd(): void {
-    //serial.write("F");
+    serial.write("F");
     console.log("F");
   }
 
   left(): void {
-    //serial.write("L");
+    serial.write("L");
     console.log("L");
   }
 
   rigt(): void {
-    //serial.write("R");
+    serial.write("R");
     console.log("R");
   }
 
   back(): void {
-    //serial.write("B");
+    serial.write("B");
     console.log("B");
   }
 
   liftup(): void {
-    //serial.write("U");
+    serial.write("U");
     console.log("U");
   }
 
   liftdown(): void {
-    //serial.write("D");
+    serial.write("D");
     console.log("D");
   }
 
   MotorProtate(): void {
-    //serial.write("p");
+    serial.write("p");
     console.log("p");
   }
 
   MotorRrotate(): void {
-    //serial.write("r");
+    serial.write("r");
     console.log("r");
   }
 
   MotorStop(): void {
-    //serial.write("s");
+    serial.write("s");
     console.log("s");
   }
 }
@@ -197,4 +199,9 @@ class EventIgnition {
   }
 }
 
+var serial;
+webiopi().ready(init);
+function init(): void{
+  serial = new serial("usb1")
+}
 var EI = new EventIgnition();
