@@ -3,7 +3,7 @@
 var serial = new Serialport("usb1", { baudRate: 115200 });
 serial.on("open");*/
 
-const SEND_INTERVAL: number = 100;
+const SEND_INTERVAL: number = 500;
 
 
 class Move {
@@ -202,6 +202,6 @@ class EventIgnition {
 var serial;
 webiopi().ready(init);
 function init(): void{
-  serial = new serial("usb1")
+  serial = new Serial("usb1")
 }
 var EI = new EventIgnition();
