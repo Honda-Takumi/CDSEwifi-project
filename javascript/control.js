@@ -2,7 +2,7 @@
 /*var Serialport = require("serialport");
 var serial = new Serialport("usb1", { baudRate: 115200 });
 serial.on("open");*/
-var SEND_INTERVAL = 500;
+var SEND_INTERVAL = 110;
 var Move = /** @class */ (function () {
     function Move() {
     }
@@ -172,6 +172,9 @@ var EventIgnition = /** @class */ (function () {
     }
     return EventIgnition;
 }());
+var width = document.documentElement.clientWidth;
+var height = document.documentElement.clientHeight;
+window.resizeTo(height, width);
 var serial;
 webiopi().ready(init);
 function init() {
