@@ -2,7 +2,7 @@
 /*var Serialport = require("serialport");
 var serial = new Serialport("usb1", { baudRate: 115200 });
 serial.on("open");*/
-var SEND_INTERVAL = 100;
+var SEND_INTERVAL = 110;
 var Move = /** @class */ (function () {
     function Move() {
     }
@@ -144,6 +144,49 @@ var EventIgnition = /** @class */ (function () {
             D.addEventListener("mouseup", function () {
                 _this.EJ.mouseup();
             });
+            //スマホ用
+            F.addEventListener("ontouchstart", function () {
+                _this.EJ = new EventJudge("fwrd");
+                _this.EJ.mousedown();
+            });
+            F.addEventListener("ontouchend", function () {
+                _this.EJ.mouseup();
+            });
+            B.addEventListener("ontouchstart", function () {
+                _this.EJ = new EventJudge("back");
+                _this.EJ.mousedown();
+            });
+            B.addEventListener("ontouchend", function () {
+                _this.EJ.mouseup();
+            });
+            R.addEventListener("ontouchstart", function () {
+                _this.EJ = new EventJudge("rigt");
+                _this.EJ.mousedown();
+            });
+            R.addEventListener("ontouchend", function () {
+                _this.EJ.mouseup();
+            });
+            L.addEventListener("ontouchstart", function () {
+                _this.EJ = new EventJudge("left");
+                _this.EJ.mousedown();
+            });
+            L.addEventListener("ontouchend", function () {
+                _this.EJ.mouseup();
+            });
+            U.addEventListener("ontouchstart", function () {
+                _this.EJ = new EventJudge("liftup");
+                _this.EJ.mousedown();
+            });
+            U.addEventListener("ontouchend", function () {
+                _this.EJ.mouseup();
+            });
+            D.addEventListener("ontouchstart", function () {
+                _this.EJ = new EventJudge("liftdown");
+                _this.EJ.mousedown();
+            });
+            D.addEventListener("ontouchend", function () {
+                _this.EJ.mouseup();
+            });
             p.addEventListener("change", function () {
                 if (document.motor.elements[0].checked) {
                     if (document.motor.elements[1].checked) {
@@ -172,9 +215,12 @@ var EventIgnition = /** @class */ (function () {
     }
     return EventIgnition;
 }());
+var width = document.documentElement.clientWidth;
+var height = document.documentElement.clientHeight;
+window.resizeTo(height, width);
 var serial;
 webiopi().ready(init);
 function init() {
-    serial = new serial("usb1");
+    serial = new Serial("usb1");
 }
 var EI = new EventIgnition();

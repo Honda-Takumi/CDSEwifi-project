@@ -5,7 +5,6 @@ serial.on("open");*/
 
 const SEND_INTERVAL: number = 110;
 
-
 class Move {
   constructor() {}
   fwrd(): void {
@@ -172,6 +171,55 @@ class EventIgnition {
         this.EJ.mouseup();
       });
 
+      //スマホ用
+      F.addEventListener("ontouchstart", () => {
+        this.EJ = new EventJudge("fwrd");
+        this.EJ.mousedown();
+      });
+      F.addEventListener("ontouchend", () => {
+        this.EJ.mouseup();
+      });
+
+      B.addEventListener("ontouchstart", () => {
+        this.EJ = new EventJudge("back");
+        this.EJ.mousedown();
+      });
+      B.addEventListener("ontouchend", () => {
+        this.EJ.mouseup();
+      });
+
+      R.addEventListener("ontouchstart", () => {
+        this.EJ = new EventJudge("rigt");
+        this.EJ.mousedown();
+      });
+      R.addEventListener("ontouchend", () => {
+        this.EJ.mouseup();
+      });
+
+      L.addEventListener("ontouchstart", () => {
+        this.EJ = new EventJudge("left");
+        this.EJ.mousedown();
+      });
+      L.addEventListener("ontouchend", () => {
+        this.EJ.mouseup();
+      });
+
+      U.addEventListener("ontouchstart", () => {
+        this.EJ = new EventJudge("liftup");
+        this.EJ.mousedown();
+      });
+      U.addEventListener("ontouchend", () => {
+        this.EJ.mouseup();
+      });
+
+      D.addEventListener("ontouchstart", () => {
+        this.EJ = new EventJudge("liftdown");
+        this.EJ.mousedown();
+      });
+      D.addEventListener("ontouchend", () => {
+        this.EJ.mouseup();
+      });
+
       p.addEventListener("change", () => {
         if (document.motor.elements[0].checked) {
           if (document.motor.elements[1].checked) {
@@ -202,13 +250,11 @@ class EventIgnition {
 const width = document.documentElement.clientWidth;
 const height = document.documentElement.clientHeight;
 
-
 window.resizeTo(height, width);
 
 var serial;
 webiopi().ready(init);
-function init(): void{
-  serial = new Serial("usb1")
+function init(): void {
+  serial = new Serial("usb1");
 }
 var EI = new EventIgnition();
-
