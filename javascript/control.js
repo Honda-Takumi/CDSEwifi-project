@@ -145,46 +145,46 @@ var EventIgnition = /** @class */ (function () {
                 _this.EJ.mouseup();
             });
             //スマホ用
-            F.addEventListener("ontouchstart", function () {
+            F.addEventListener("touchstart", function () {
                 _this.EJ = new EventJudge("fwrd");
                 _this.EJ.mousedown();
             });
-            F.addEventListener("ontouchend", function () {
+            F.addEventListener("touchend", function () {
                 _this.EJ.mouseup();
             });
-            B.addEventListener("ontouchstart", function () {
+            B.addEventListener("touchstart", function () {
                 _this.EJ = new EventJudge("back");
                 _this.EJ.mousedown();
             });
-            B.addEventListener("ontouchend", function () {
+            B.addEventListener("touchend", function () {
                 _this.EJ.mouseup();
             });
-            R.addEventListener("ontouchstart", function () {
+            R.addEventListener("touchstart", function () {
                 _this.EJ = new EventJudge("rigt");
                 _this.EJ.mousedown();
             });
-            R.addEventListener("ontouchend", function () {
+            R.addEventListener("touchend", function () {
                 _this.EJ.mouseup();
             });
-            L.addEventListener("ontouchstart", function () {
+            L.addEventListener("touchstart", function () {
                 _this.EJ = new EventJudge("left");
                 _this.EJ.mousedown();
             });
-            L.addEventListener("ontouchend", function () {
+            L.addEventListener("touchend", function () {
                 _this.EJ.mouseup();
             });
-            U.addEventListener("ontouchstart", function () {
+            U.addEventListener("touchstart", function () {
                 _this.EJ = new EventJudge("liftup");
                 _this.EJ.mousedown();
             });
-            U.addEventListener("ontouchend", function () {
+            U.addEventListener("touchend", function () {
                 _this.EJ.mouseup();
             });
-            D.addEventListener("ontouchstart", function () {
+            D.addEventListener("touchstart", function () {
                 _this.EJ = new EventJudge("liftdown");
                 _this.EJ.mousedown();
             });
-            D.addEventListener("ontouchend", function () {
+            D.addEventListener("touchend", function () {
                 _this.EJ.mouseup();
             });
             p.addEventListener("change", function () {

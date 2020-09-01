@@ -172,51 +172,51 @@ class EventIgnition {
       });
 
       //スマホ用
-      F.addEventListener("ontouchstart", () => {
+      F.addEventListener("touchstart", () => {
         this.EJ = new EventJudge("fwrd");
         this.EJ.mousedown();
       });
-      F.addEventListener("ontouchend", () => {
+      F.addEventListener("touchend", () => {
         this.EJ.mouseup();
       });
 
-      B.addEventListener("ontouchstart", () => {
+      B.addEventListener("touchstart", () => {
         this.EJ = new EventJudge("back");
         this.EJ.mousedown();
       });
-      B.addEventListener("ontouchend", () => {
+      B.addEventListener("touchend", () => {
         this.EJ.mouseup();
       });
 
-      R.addEventListener("ontouchstart", () => {
+      R.addEventListener("touchstart", () => {
         this.EJ = new EventJudge("rigt");
         this.EJ.mousedown();
       });
-      R.addEventListener("ontouchend", () => {
+      R.addEventListener("touchend", () => {
         this.EJ.mouseup();
       });
 
-      L.addEventListener("ontouchstart", () => {
+      L.addEventListener("touchstart", () => {
         this.EJ = new EventJudge("left");
         this.EJ.mousedown();
       });
-      L.addEventListener("ontouchend", () => {
+      L.addEventListener("touchend", () => {
         this.EJ.mouseup();
       });
 
-      U.addEventListener("ontouchstart", () => {
+      U.addEventListener("touchstart", () => {
         this.EJ = new EventJudge("liftup");
         this.EJ.mousedown();
       });
-      U.addEventListener("ontouchend", () => {
+      U.addEventListener("touchend", () => {
         this.EJ.mouseup();
       });
 
-      D.addEventListener("ontouchstart", () => {
+      D.addEventListener("touchstart", () => {
         this.EJ = new EventJudge("liftdown");
         this.EJ.mousedown();
       });
-      D.addEventListener("ontouchend", () => {
+      D.addEventListener("touchend", () => {
         this.EJ.mouseup();
       });
 
