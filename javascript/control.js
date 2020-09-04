@@ -7,39 +7,39 @@ var Move = /** @class */ (function () {
     function Move() {
     }
     Move.prototype.fwrd = function () {
-        serial.write("F");
+        //serial.write("F");
         console.log("F");
     };
     Move.prototype.left = function () {
-        serial.write("L");
+        //serial.write("L");
         console.log("L");
     };
     Move.prototype.rigt = function () {
-        serial.write("R");
+        //serial.write("R");
         console.log("R");
     };
     Move.prototype.back = function () {
-        serial.write("B");
+        //serial.write("B");
         console.log("B");
     };
     Move.prototype.liftup = function () {
-        serial.write("U");
+        //serial.write("U");
         console.log("U");
     };
     Move.prototype.liftdown = function () {
-        serial.write("D");
+        //serial.write("D");
         console.log("D");
     };
     Move.prototype.MotorProtate = function () {
-        serial.write("p");
+        //serial.write("p");
         console.log("p");
     };
     Move.prototype.MotorRrotate = function () {
-        serial.write("r");
+        //serial.write("r");
         console.log("r");
     };
     Move.prototype.MotorStop = function () {
-        serial.write("s");
+        //serial.write("s");
         console.log("s");
     };
     return Move;
@@ -218,9 +218,11 @@ var EventIgnition = /** @class */ (function () {
 var width = document.documentElement.clientWidth;
 var height = document.documentElement.clientHeight;
 window.resizeTo(width, height);
+/*
 var serial;
 webiopi().ready(init);
-function init() {
-    serial = new Serial("usb1");
+function init(): void {
+  serial = new Serial("usb1");
 }
+*/
 var EI = new EventIgnition();
