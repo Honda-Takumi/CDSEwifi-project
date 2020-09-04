@@ -9,7 +9,7 @@ class Move {
   constructor() {}
   fwrd(): void {
     serial.write("F");
-    console.log("F");
+    //console.log("F");
   }
 
   left(): void {
@@ -18,37 +18,37 @@ class Move {
   }
 
   rigt(): void {
-    serial.write("R");
+    //serial.write("R");
     console.log("R");
   }
 
   back(): void {
-    serial.write("B");
+    //serial.write("B");
     console.log("B");
   }
 
   liftup(): void {
-    serial.write("U");
+    //serial.write("U");
     console.log("U");
   }
 
   liftdown(): void {
-    serial.write("D");
+    //serial.write("D");
     console.log("D");
   }
 
   MotorProtate(): void {
-    serial.write("p");
+    //serial.write("p");
     console.log("p");
   }
 
   MotorRrotate(): void {
-    serial.write("r");
+    //serial.write("r");
     console.log("r");
   }
 
   MotorStop(): void {
-    serial.write("s");
+    //serial.write("s");
     console.log("s");
   }
 }
@@ -253,9 +253,10 @@ const height = document.documentElement.clientHeight;
 window.resizeTo(width, height);
 
 var serial;
+/*
 webiopi().ready(init);
 function init(): void {
   serial = new Serial("usb1");
 }
-
+*/
 var EI = new EventIgnition();
