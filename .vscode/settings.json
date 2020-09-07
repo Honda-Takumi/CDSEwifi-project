@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/9bd01c47-6c82-47ed-b1f5-d89f05489d16/resourceGroups/Azure-CDSEwifi-project/providers/Microsoft.Web/sites/CDSEwifi-project",
+    "appService.deploySubpath": "."
+}
