@@ -21,6 +21,12 @@ body {
 
 /*左側の設定*/
 .box {
+    /*デバイスによるデザイン変更の無効化*/
+    -webkit-appearance: none;
+    /*リンク長押しのポップアップの無効化*/
+    -webkit-touch-callout:none;
+    /*テキスト長押しの選択ボックスを無効化*/
+    -webkit-user-select:none;
     display: box;
     grid-template-columns: 30px 30px 30px;
     grid-template-rows: 30px 30px 30px;
