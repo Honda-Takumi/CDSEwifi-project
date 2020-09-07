@@ -16,10 +16,9 @@ body {
     -webkit-touch-callout:none;
     /*テキスト長押しの選択ボックスを無効化*/
     -webkit-user-select:none;
-
 }
 
-/*左側の設定*/
+/*box(押しボタン)の設定*/
 .box {
     /*デバイスによるデザイン変更の無効化*/
     -webkit-appearance: none;
